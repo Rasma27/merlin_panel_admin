@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Masuk | {{ config('app.name', 'Ruang Kerja') }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{font-family:'DM Sans',sans-serif;color:#202421;background:#f2efe9;--green:#1d553f;--muted:#747971;--line:#d9dbd2}*{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh;background:radial-gradient(ellipse at 87% 10%,rgba(205,222,163,.4),transparent 31%),radial-gradient(ellipse at 4% 88%,rgba(225,222,211,.72),transparent 27%),#f2efe9}a{color:inherit;text-decoration:none}.shell{max-width:1180px;margin:auto;padding:28px 48px}.top{display:flex;align-items:center;justify-content:space-between;padding-bottom:19px;border-bottom:1px solid rgba(32,36,33,.13)}.brand{display:flex;align-items:center;gap:11px;font:800 16px 'Manrope',sans-serif}.mark{width:34px;height:34px;border-radius:10px;background:var(--green);color:#d3ef77;display:grid;place-items:center}.back{font-size:12px;color:#686e67}.layout{min-height:calc(100vh - 112px);display:grid;grid-template-columns:1fr 390px;align-items:center;gap:100px;padding:54px 9%}.copy .eyebrow{color:var(--green);font-size:10px;font-weight:700;letter-spacing:0}.copy h1{font:600 42px/1.13 'Manrope',sans-serif;letter-spacing:0;margin:17px 0 14px}.copy p{max-width:380px;color:#747971;font-size:13px;line-height:1.8}.points{margin-top:29px;display:flex;flex-direction:column;gap:13px}.point{display:flex;align-items:center;gap:11px;color:#565d55;font-size:11px}.tick{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#e4ebde;color:var(--green);font-size:12px}.form{background:#fbfaf6;border:1px solid #dedfd7;border-radius:6px;padding:31px 30px;box-shadow:0 20px 60px rgba(37,49,39,.07)}.form h2{font:700 19px 'Manrope',sans-serif;letter-spacing:0;margin:0 0 7px}.hint{font-size:11px;color:#7b8179;margin:0 0 24px}.field{margin-bottom:17px}.field label{display:block;font-size:11px;font-weight:700;margin-bottom:7px}.field input{width:100%;height:43px;border:1px solid #d4d7ce;border-radius:4px;background:#fff;padding:0 12px;font:13px 'DM Sans',sans-serif;color:#202421;outline:none;transition:border-color .15s,box-shadow .15s}.field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(29,85,63,.1)}.field input::placeholder{color:#9a9e97}.error{margin:6px 0 0;color:#a73e34;font-size:10px}.remember{display:flex;align-items:center;gap:8px;margin:2px 0 19px;color:#666c65;font-size:11px}.remember input{accent-color:var(--green)}button{height:44px;width:100%;border:0;border-radius:4px;background:var(--green);color:white;font:700 12px 'DM Sans',sans-serif;cursor:pointer;transition:background .2s}button:hover{background:#174631}.demo{margin:20px 0 0;padding-top:15px;border-top:1px solid #e3e4dd;color:#7a8078;font-size:10px;line-height:1.7}.demo strong{color:#434a43;font-weight:700}.alert{padding:10px 11px;margin-bottom:16px;background:#f8e6e1;color:#943d34;border-radius:4px;font-size:11px}@media(max-width:760px){.shell{padding:20px 21px}.layout{min-height:auto;grid-template-columns:1fr;gap:31px;padding:45px 0}.copy h1{font-size:35px}.points{display:none}.form{padding:25px 22px}.back{font-size:11px}}
+    </style>
+    <style>
+        :root{font-family:'DM Sans',sans-serif;color:#252421;background:#f4f0e9;--green:#a43b2a;--muted:#706b64;--line:#d5cec2}body{background:linear-gradient(135deg,#f4f0e9 0 57%,#e9dfd1 57% 100%)}.shell{max-width:1320px;padding:23px 5vw}.top{border-color:#cfc7bb}.brand{font-size:14px;text-transform:uppercase;letter-spacing:1px}.mark{border-radius:2px;background:#a43b2a;color:#fff3e3}.back{font-size:11px;text-transform:uppercase;letter-spacing:.4px}.layout{grid-template-columns:1fr 420px;gap:9vw;padding:45px 7%;position:relative}.copy .eyebrow{color:#a43b2a;letter-spacing:1.4px}.copy h1{font-size:clamp(42px,5vw,64px);line-height:1.04}.copy p{font-size:14px}.points{gap:10px}.tick{border-radius:2px;background:#e8d9ca;color:#a43b2a}.form{background:#fbf9f4;border:0;border-top:3px solid #a43b2a;border-radius:0;padding:34px 32px;box-shadow:0 18px 45px rgba(65,45,30,.1)}.form h2{font-size:21px}.hint{font-size:12px}.field label{font-size:11px;text-transform:uppercase;letter-spacing:.4px}.field input{border-radius:2px;border-color:#cfc7bb;background:#fffefa}.field input:focus{border-color:#a43b2a;box-shadow:0 0 0 3px rgba(164,59,42,.12)}button{border-radius:2px;background:#a43b2a}button:hover{background:#832e21}.remember input{accent-color:#a43b2a}.demo{background:#f1ece3;margin-top:18px;padding:13px;font-size:10px}.alert{border-radius:2px}@media(max-width:760px){body{background:#f4f0e9}.layout{gap:22px;padding:40px 0}.copy h1{font-size:38px}.form{padding:26px 22px}}
+    </style>
+</head>
+<body>
+<div class="shell">
+    <header class="top"><a class="brand" href="{{ route('home') }}"><span class="mark">R</span> Ruang Kerja</a><a class="back" href="{{ route('home') }}">Kembali ke halaman awal</a></header>
+    <main class="layout">
+        <section class="copy"><div class="eyebrow">AKSES PENGGUNA</div><h1>Selamat datang<br>kembali.</h1><p>Masuk ke ruang kerja sesuai peran Anda. Sistem akan mengarahkan Anda ke halaman yang tepat.</p><div class="points"><div class="point"><span class="tick">✓</span> Area admin dan kasir terpisah</div><div class="point"><span class="tick">✓</span> Akses dijaga oleh middleware</div><div class="point"><span class="tick">✓</span> Sesi masuk terlindungi</div></div></section>
+        <form class="form" method="POST" action="{{ route('login.store') }}">
+            @csrf
+            <h2>Masuk ke akun</h2><p class="hint">Gunakan email dan kata sandi akun Anda.</p>
+            @if ($errors->any())<div class="alert" role="alert">{{ $errors->first() }}</div>@endif
+            <div class="field"><label for="email">Alamat email</label><input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="nama@contoh.com" autocomplete="username" required autofocus>@error('email')<p class="error">{{ $message }}</p>@enderror</div>
+            <div class="field"><label for="password">Kata sandi</label><input id="password" type="password" name="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required>@error('password')<p class="error">{{ $message }}</p>@enderror</div>
+            <label class="remember"><input type="checkbox" name="remember" value="1"> Ingat saya di perangkat ini</label>
+            <button type="submit">Masuk</button>
+            <p class="demo"><strong>Akun demo untuk pengujian</strong><br>Admin: admin@gmail.com · password<br>Kasir: kasir@gmail.com · password</p>
+        </form>
+    </main>
+</div>
+</body>
+</html>
