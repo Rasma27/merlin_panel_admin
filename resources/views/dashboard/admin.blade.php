@@ -1,28 +1,46 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Admin | {{ config('app.name', 'Ruang Kerja') }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root{font-family:'DM Sans',sans-serif;color:#202421;background:#f3f4ef;--green:#1d553f;--line:#e0e3dc;--muted:#777e77}*{box-sizing:border-box}body{margin:0;min-width:320px}.layout{min-height:100vh;display:grid;grid-template-columns:230px 1fr}.side{background:#1e3e30;color:#f5f5ed;padding:27px 19px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;font:800 15px 'Manrope',sans-serif;padding:0 7px 28px;border-bottom:1px solid rgba(255,255,255,.13)}.mark{width:31px;height:31px;border-radius:9px;background:#d3ef77;color:#1e3e30;display:grid;place-items:center}.side-label{font-size:9px;color:#a7b6a9;padding:23px 8px 9px}.side-link{display:flex;align-items:center;gap:11px;padding:10px 11px;margin-bottom:4px;border-radius:4px;color:#e6e9df;font-size:11px}.side-link.active{background:rgba(211,239,119,.15);color:#e3f4a5}.side-link span{width:15px;text-align:center;font-size:14px}.side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.13);padding:16px 6px 0}.user{font-size:11px;color:#f5f5ed}.user small{display:block;color:#a9b5ab;margin-top:5px}.logout{width:100%;margin-top:15px;background:transparent;color:#e6e9df;border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:9px;font:600 10px 'DM Sans',sans-serif;cursor:pointer}.main{padding:28px 36px 45px;max-width:1450px;width:100%;margin:0 auto}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:17px;border-bottom:1px solid var(--line);font-size:11px;color:#737a73}.avatar{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#e3ebdc;color:var(--green);font-weight:700}.crumb{display:flex;align-items:center;gap:8px}.crumb b{color:#303730}.head{display:flex;justify-content:space-between;align-items:end;margin:31px 0 23px}.head h1{font:700 24px 'Manrope',sans-serif;letter-spacing:0;margin:0 0 5px}.head p{font-size:11px;color:var(--muted);margin:0}.date{font-size:10px;color:#717971;border:1px solid var(--line);background:#fbfcf9;padding:9px 11px;border-radius:4px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{padding:17px 18px;background:#fbfcf9;border:1px solid var(--line);border-radius:5px}.stat-label{font-size:10px;color:#747a73}.stat-number{font:700 25px 'Manrope',sans-serif;letter-spacing:0;margin:12px 0 6px}.stat-note{font-size:9px;color:#80867f}.stat-note em{color:var(--green);font-style:normal;font-weight:700}.panels{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;margin-top:15px}.panel{background:#fbfcf9;border:1px solid var(--line);border-radius:5px;padding:18px}.panel h2{font:700 13px 'Manrope',sans-serif;letter-spacing:0;margin:0}.panel-hint{font-size:9px;color:#7d837c;margin:5px 0 20px}.chart{height:140px;display:flex;align-items:end;gap:10px;padding:0 6px;border-bottom:1px solid #e1e4dc;background:repeating-linear-gradient(to bottom,transparent 0,transparent 34px,#eaede6 35px)}.bar{flex:1;position:relative;background:#cbd8c7;border-radius:3px 3px 0 0;min-width:7px}.bar:nth-child(3n){background:#315f48}.chart-labels{display:flex;justify-content:space-between;color:#90968f;font-size:8px;margin-top:8px}.access{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #e7e9e3;font-size:10px}.access:first-of-type{border-top:0}.badge{font-size:8px;font-weight:700;background:#e5eddf;color:#315f48;border-radius:3px;padding:5px 7px}.notice{margin-top:15px;border:1px solid #dae4d4;border-left:3px solid var(--green);background:#f0f5ec;border-radius:4px;padding:13px 15px;color:#525a51;font-size:10px;line-height:1.6}.notice strong{color:#284a36}@media(max-width:800px){.layout{grid-template-columns:1fr}.side{padding:15px 19px;flex-direction:row;align-items:center;gap:13px}.brand{border:0;padding:0}.side-label,.side-link,.side-bottom{display:none}.main{padding:23px 19px}.panels{grid-template-columns:1fr}}@media(max-width:520px){.stats{grid-template-columns:1fr}.head{align-items:start;gap:13px;flex-direction:column}}
-    </style>
-    <style>
-        :root{font-family:'DM Sans',sans-serif;color:#252421;background:#f4f0e9;--green:#a43b2a;--line:#ded7cc;--muted:#746e66}body{background:#f4f0e9}.layout{grid-template-columns:246px minmax(0,1fr)}.side{background:#292724;color:#f5f0e7;padding:24px 19px}.brand{font-family:'DM Sans',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.7px}.mark{border-radius:2px;background:#a43b2a;color:white}.side-label{letter-spacing:1px}.side-link{border-radius:2px}.side-link.active{background:#a43b2a;color:white}.main{max-width:1500px;padding:29px 4vw 45px}.top{border-color:var(--line)}.avatar{border-radius:2px;background:#e8d9ca;color:#a43b2a}.head h1{font-size:27px}.date{border-radius:2px;background:#fbf9f4}.stats{gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.stat{background:transparent;border:0;border-right:1px solid var(--line);border-radius:0;padding:20px}.stat:last-child{border-right:0}.stat-number{color:#a43b2a;font-size:29px}.panels{gap:12px}.panel{background:#fbf9f4;border:1px solid var(--line);border-radius:2px}.panel h2{font-size:14px}.bar:nth-child(3n){background:#a43b2a}.badge{border-radius:2px;background:#f0e2d8;color:#933b2d}.notice{border-radius:2px;border-color:#e5c9b6;border-left-color:#a43b2a;background:#f4e9df}.logout{border-radius:2px}@media(max-width:800px){.side{background:#292724}.stats{grid-template-columns:1fr;border-bottom:0}.stat{border-bottom:1px solid var(--line);border-right:0}.stat:last-child{border-bottom:1px solid var(--line)}}
-    </style>
-    <style>
-        @media (max-width: 319px) { body { min-width: 0; } }
-    </style>
-</head>
-<body>
-<div class="layout">
-    <aside class="side"><a class="brand" href="{{ route('admin.dashboard') }}"><span class="mark">R</span> Ruang Kerja</a><div class="side-label">MENU UTAMA</div><a class="side-link active" href="{{ route('admin.dashboard') }}"><span>⌂</span> Ringkasan</a><a class="side-link" href="#pengguna"><span>◎</span> Pengguna</a><a class="side-link" href="#laporan"><span>▤</span> Laporan</a><div class="side-bottom"><div class="user">{{ auth()->user()->name }}<small>Administrator</small></div><form method="POST" action="{{ route('logout') }}">@csrf<button class="logout" type="submit">Keluar dari akun</button></form></div></aside>
-    <main class="main"><header class="top"><div class="crumb"><b>Admin</b><span>/</span><span>Ringkasan</span></div><div class="avatar" aria-label="Administrator">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div></header>
-        <section class="head"><div><h1>Ringkasan admin</h1><p>Selamat bekerja, {{ auth()->user()->name }}. Berikut gambaran ruang kerja Anda.</p></div><div class="date">{{ now()->locale('id')->translatedFormat('l, d F Y') }}</div></section>
-        <section class="stats" aria-label="Statistik ringkasan"><article class="stat"><div class="stat-label">Total pengguna</div><div class="stat-number">{{ \App\Models\User::count() }}</div><div class="stat-note"><em>Aktif</em> · akun pada sistem</div></article><article class="stat"><div class="stat-label">Administrator</div><div class="stat-number">{{ \App\Models\User::where('role', 'admin')->count() }}</div><div class="stat-note">Pengelola ruang kerja</div></article><article class="stat"><div class="stat-label">Kasir</div><div class="stat-number">{{ \App\Models\User::where('role', 'kasir')->count() }}</div><div class="stat-note">Pengguna operasional</div></article></section>
-        <section class="panels"><article class="panel" id="laporan"><h2>Aktivitas sistem</h2><p class="panel-hint">Status operasional saat ini</p><div class="chart" aria-label="Grafik ilustrasi aktivitas"><i class="bar" style="height:32%"></i><i class="bar" style="height:48%"></i><i class="bar" style="height:39%"></i><i class="bar" style="height:66%"></i><i class="bar" style="height:55%"></i><i class="bar" style="height:77%"></i><i class="bar" style="height:62%"></i><i class="bar" style="height:92%"></i><i class="bar" style="height:71%"></i><i class="bar" style="height:84%"></i><i class="bar" style="height:67%"></i><i class="bar" style="height:96%"></i></div><div class="chart-labels"><span>08.00</span><span>10.00</span><span>12.00</span><span>14.00</span><span>16.00</span><span>18.00</span></div></article><article class="panel" id="pengguna"><h2>Kontrol akses</h2><p class="panel-hint">Middleware role terpasang pada route</p><div class="access"><span>Area administrator</span><span class="badge">ADMIN</span></div><div class="access"><span>Area operasional kasir</span><span class="badge">KASIR</span></div><div class="access"><span>Sesi autentikasi</span><span class="badge">AKTIF</span></div></article></section>
-        <div class="notice"><strong>Akses administrator aktif.</strong> Halaman ini hanya tersedia untuk akun dengan role admin.</div>
-    </main>
-</div>
-</body>
-</html>
+@extends('layouts.market')
+
+@section('title', 'Ringkasan Admin | MerlinMarket')
+
+@section('content')
+<main class="page">
+    <div class="eyebrow">Area administrator</div>
+    <h1 class="page-title">Ringkasan admin</h1>
+    <p class="sub">Selamat bekerja, {{ auth()->user()->name }}. Pantau katalog dan transaksi MerlinMarket.</p>
+    <div id="order-notification" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <section class="stat-grid" aria-label="Statistik MerlinMarket">
+        <article class="stat"><span class="muted">Produk</span><strong>{{ $productCount }}</strong><span class="muted">Produk terdaftar</span></article>
+        <article class="stat"><span class="muted">Transaksi</span><strong id="order-count">{{ $orderCount }}</strong><span class="muted">Invoice tersimpan</span></article>
+        <article class="stat"><span class="muted">Pengguna</span><strong>{{ $userCount }}</strong><span class="muted">Akun admin dan kasir</span></article>
+    </section>
+
+    <div class="section-head">
+        <div><div class="eyebrow">Katalog</div><h2>Kelola produk</h2></div>
+        <a class="btn" href="{{ route('admin.products.index') }}">Buka katalog admin</a>
+    </div>
+    <div class="panel">
+        <h3>Produk dan gambar</h3>
+        <p class="sub">Tambahkan foto produk. MerlinMarket akan melakukan crop, rotasi pilihan, watermark, dan konversi WebP otomatis.</p>
+    </div>
+
+    <div class="section-head"><div><div class="eyebrow">Aktivitas toko</div><h2>Transaksi terbaru</h2></div></div>
+    @if ($orders->isEmpty())
+        <div class="empty">Belum ada transaksi di MerlinMarket.</div>
+    @else
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Invoice</th><th>Kasir</th><th>Tanggal</th><th>Total</th><th>Dokumen</th></tr></thead>
+                <tbody>
+                @foreach ($orders as $order)
+                    <tr><td>{{ $order->invoice_number }}</td><td>{{ $order->user->name }}</td><td>{{ $order->created_at->format('d/m/Y H:i') }}</td><td>Rp{{ number_format((float) $order->total, 0, ',', '.') }}</td><td><a class="text-link" href="{{ route('orders.invoice', $order) }}">Unduh invoice</a></td></tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+</main>
+@push('scripts')
+    @vite('resources/js/app.js')
+@endpush
+@endsection

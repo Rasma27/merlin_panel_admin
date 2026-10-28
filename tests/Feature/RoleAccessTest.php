@@ -12,7 +12,7 @@ class RoleAccessTest extends TestCase
 
     public function test_welcome_page_is_public(): void
     {
-        $this->get('/')->assertOk()->assertSee('Satu ruang');
+        $this->get('/')->assertOk()->assertSee('Belanja nyaman');
     }
 
     public function test_admin_can_sign_in_and_cannot_open_cashier_page(): void
@@ -25,6 +25,7 @@ class RoleAccessTest extends TestCase
         ])->assertRedirect(route('dashboard'));
 
         $this->get('/dashboard')->assertRedirect(route('admin.dashboard'));
+        $this->withoutVite();
         $this->get('/admin')->assertOk()->assertSee('Ringkasan admin');
         $this->get('/kasir')->assertForbidden();
     }
@@ -39,7 +40,7 @@ class RoleAccessTest extends TestCase
         ])->assertRedirect(route('dashboard'));
 
         $this->get('/dashboard')->assertRedirect(route('cashier.dashboard'));
-        $this->get('/kasir')->assertOk()->assertSee('Ruang kasir');
+        $this->get('/kasir')->assertOk()->assertSee('Buat transaksi');
         $this->get('/admin')->assertForbidden();
     }
 
