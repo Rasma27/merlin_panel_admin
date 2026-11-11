@@ -12,12 +12,16 @@ class Order extends Model
         'invoice_number',
         'user_id',
         'total',
+        'paid_amount',
+        'change_amount',
     ];
 
     protected function casts(): array
     {
         return [
             'total' => 'decimal:2',
+            'paid_amount' => 'decimal:2',
+            'change_amount' => 'decimal:2',
         ];
     }
 

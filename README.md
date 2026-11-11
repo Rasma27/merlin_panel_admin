@@ -28,7 +28,7 @@ Demo accounts seeded by `DatabaseSeeder`:
 - The public home page displays in-stock products.
 - Admins can add, edit, and remove products. Image uploads are validated, auto-oriented, rotated when requested, cropped to 1000 × 1000, watermarked with MerlinMarket, and converted to WebP using Intervention Image.
 - Cashiers can create a sale with multiple products. Stock is checked and decremented transactionally.
-- Each sale stores an invoice number and item price snapshots. The cashier can download the invoice as a PDF; administrators can download any invoice.
+- Cashiers can choose quick cash amounts, and each sale stores the amount received and change alongside its invoice number and item price snapshots. A printable receipt is shown after checkout; cashiers can also download the invoice as a PDF, and administrators can download any invoice.
 - Product and invoice routes retain role-based access control.
 
 The Intervention Image GD driver requires PHP GD. Demo products can be added by rerunning `php artisan db:seed`.

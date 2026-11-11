@@ -19,6 +19,8 @@
         <tr><td>{{ $item->product_name }}</td><td class="right">Rp{{ number_format((float) $item->unit_price, 0, ',', '.') }}</td><td class="right">{{ $item->quantity }}</td><td class="right">Rp{{ number_format((float) $item->subtotal, 0, ',', '.') }}</td></tr>
     @endforeach
     <tr><td colspan="3" class="right total">Total</td><td class="right total">Rp{{ number_format((float) $order->total, 0, ',', '.') }}</td></tr>
+    <tr><td colspan="3" class="right">Dibayar</td><td class="right">Rp{{ number_format((float) $order->paid_amount, 0, ',', '.') }}</td></tr>
+    <tr><td colspan="3" class="right">Kembalian</td><td class="right">Rp{{ number_format((float) $order->change_amount, 0, ',', '.') }}</td></tr>
     </tbody>
 </table>
 <p class="thanks">Terima kasih telah berbelanja di MerlinMarket.</p>

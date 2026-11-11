@@ -26,5 +26,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/kasir', [OrderController::class, 'index'])->middleware('role:kasir')->name('cashier.dashboard');
     Route::post('/kasir/orders', [OrderController::class, 'store'])->middleware('role:kasir')->name('cashier.orders.store');
+    Route::get('/orders/{order}/receipt', [InvoiceController::class, 'receipt'])->name('orders.receipt');
     Route::get('/orders/{order}/invoice', [InvoiceController::class, 'show'])->name('orders.invoice');
 });

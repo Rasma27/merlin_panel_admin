@@ -54,12 +54,16 @@ class MerlinMarketFeaturesTest extends TestCase
                     'quantity' => 2,
                 ],
             ],
+            'paid_amount' => '30000.00',
         ]);
 
         $order = Order::query()->firstOrFail();
-        $response->assertRedirect(route('orders.invoice', $order));
+        $response->assertRedirect(route('orders.receipt', $order));
+        $response->assertSessionHas('print_receipt', true);
         $this->assertSame(3, $product->fresh()->stock);
         $this->assertSame('25000.00', $order->fresh()->total);
+        $this->assertSame('30000.00', $order->fresh()->paid_amount);
+        $this->assertSame('5000.00', $order->fresh()->change_amount);
         Event::assertDispatched(OrderPlaced::class, function (OrderPlaced $event) use ($order): bool {
             $payload = $event->broadcastWith();
 
@@ -72,6 +76,38 @@ class MerlinMarketFeaturesTest extends TestCase
         $invoice->assertOk();
         $this->assertStringStartsWith('%PDF-', $invoice->getContent());
         $invoice->assertHeader('content-type', 'application/pdf');
+
+        $receipt = $this->withSession(['print_receipt' => true])->get(route('orders.receipt', $order));
+        $receipt->assertOk()
+            ->assertSee('Produk transaksi')
+            ->assertSee('Dibayar')
+            ->assertSee('Kembalian')
+            ->assertSee('window.print()')
+            ->assertSee(route('orders.invoice', $order), false);
+    }
+
+    public function test_cashier_cannot_complete_a_sale_with_insufficient_payment(): void
+    {
+        $cashier = User::factory()->create(['role' => 'kasir']);
+        $product = Product::create([
+            'sku' => 'MM-UNDERPAID',
+            'name' => 'Produk belum lunas',
+            'price' => '12500.00',
+            'stock' => 5,
+        ]);
+
+        $this->actingAs($cashier)->from(route('cashier.dashboard'))->post(route('cashier.orders.store'), [
+            'items' => [
+                $product->id => [
+                    'product_id' => $product->id,
+                    'quantity' => 2,
+                ],
+            ],
+            'paid_amount' => '24999.99',
+        ])->assertSessionHasErrors('paid_amount');
+
+        $this->assertSame(5, $product->fresh()->stock);
+        $this->assertDatabaseCount('orders', 0);
     }
 
     public function test_cashier_cannot_sell_more_than_available_stock(): void
@@ -91,6 +127,7 @@ class MerlinMarketFeaturesTest extends TestCase
                     'quantity' => 2,
                 ],
             ],
+            'paid_amount' => '20000.00',
         ])->assertSessionHasErrors('items');
 
         $this->assertSame(1, $product->fresh()->stock);
@@ -108,6 +145,19 @@ class MerlinMarketFeaturesTest extends TestCase
         ]);
 
         $this->actingAs($otherCashier)->get(route('orders.invoice', $order))->assertForbidden();
+    }
+
+    public function test_cashier_cannot_view_another_users_receipt(): void
+    {
+        $owner = User::factory()->create(['role' => 'kasir']);
+        $otherCashier = User::factory()->create(['role' => 'kasir']);
+        $order = Order::create([
+            'invoice_number' => 'MM-TEST-RECEIPT',
+            'user_id' => $owner->id,
+            'total' => '0.00',
+        ]);
+
+        $this->actingAs($otherCashier)->get(route('orders.receipt', $order))->assertForbidden();
     }
 
     public function test_only_admins_can_authorize_the_order_notifications_channel(): void
