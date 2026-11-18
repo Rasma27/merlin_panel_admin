@@ -26,7 +26,7 @@ class RoleAccessTest extends TestCase
 
         $this->get('/dashboard')->assertRedirect(route('admin.dashboard'));
         $this->withoutVite();
-        $this->get('/admin')->assertOk()->assertSee('Ringkasan admin');
+        $this->get('/admin')->assertOk()->assertSee('Dashboard');
         $this->get('/kasir')->assertForbidden();
     }
 
@@ -46,6 +46,6 @@ class RoleAccessTest extends TestCase
 
     public function test_guest_is_redirected_to_login_from_protected_page(): void
     {
-        $this->get('/admin')->assertRedirect(route('login'));
+        $this->get('/admin')->assertRedirect(route('filament.admin.auth.login'));
     }
 }

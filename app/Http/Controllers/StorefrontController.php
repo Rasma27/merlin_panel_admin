@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class StorefrontController extends Controller
 {
@@ -16,13 +15,8 @@ class StorefrontController extends Controller
         ]);
     }
 
-    public function admin(): View
+    public function admin(): RedirectResponse
     {
-        return view('dashboard.admin', [
-            'productCount' => Product::count(),
-            'userCount' => User::count(),
-            'orderCount' => Order::count(),
-            'orders' => Order::query()->with('user')->latest()->take(8)->get(),
-        ]);
+        return redirect('/admin');
     }
 }

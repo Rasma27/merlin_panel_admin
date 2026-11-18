@@ -18,8 +18,10 @@ Route::post('/logout', [AuthController::class, 'destroy'])->middleware('auth')->
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-    Route::get('/admin', [StorefrontController::class, 'admin'])->middleware('role:admin')->name('admin.dashboard');
-    Route::resource('/admin/products', ProductController::class)
+    Route::get('/admin-dashboard', [StorefrontController::class, 'admin'])
+        ->middleware('role:admin')
+        ->name('admin.dashboard');
+    Route::resource('/manage/products', ProductController::class)
         ->except(['show'])
         ->middleware('role:admin')
         ->names('admin.products');
